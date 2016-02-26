@@ -1,0 +1,104 @@
+<%= form_for(@profile) do |f| %>
+  <% if @profile.errors.any? %>
+  <div class="container">
+    <div class="alert alert-warning fade in">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% @profile.errors.full_messages.each do |message| %>
+     
+  <strong><li><%= message %></li></strong>
+ 
+      <% end %>
+      </ul>
+    </div>
+    </div>
+  <% end %>
+<div class="container">
+<div class="rows">
+
+
+
+  <div class="container">
+
+<div class="col-md-6">
+
+<div class="panel panel-default">
+<div class="panel-heading">Personal Info</div>
+<div class="panel-body">
+
+  <div class="form-group">
+    <%= f.label :firstname %><br>
+    <%= f.text_field :firstname, class: "form-control" %><br>
+  
+    <%= f.label :lastname %><br>
+    <%= f.text_field :lastname, class: "form-control" %><br>
+  
+    <%= f.label :age %><br>
+    <%= f.number_field :age, class: "form-control" %><br>
+
+    <%= f.label :department %><br>
+    <%= f.select :department, ['BioTechnology', 'Civil', 'ComputerScience', 'Chemical', 'Electrical', 'Electronics', 'IT', 'Mechanical','Metalurgical'], {}, class: "form-control"%><br><br>
+
+    <%= f.label :about %><br>
+    <%= f.text_area :about, rows: 5, class: "form-control"%><br>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+<div class="col-md-4">
+
+<div class="panel panel-default">
+<div class="panel-heading">Interests</div>
+<div class="panel-body">
+
+<%= f.fields_for :interests do |interests_form| %>
+<%= render 'interest_fields', f: interests_form %>
+<% end %>
+
+<div class="links">
+<%= link_to_add_association 'Add Interest', f, :interests %>
+</div>
+
+
+</div>
+</div>
+
+<!</div>
+
+
+<!<div class="col-md-4">
+<div class="panel panel-default">
+<div class="panel-heading">Qualifications</div>
+
+<div class="panel-body">
+
+<%= f.fields_for :grades do |grades_form| %>
+<%= render 'grade_fields', f: grades_form %>
+<% end %>
+
+<div class="links">
+<%= link_to_add_association 'Add Degree', f, :grades  %>
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="col-md-2">
+  <div class="links">
+  <span style="float:right">
+    <%= f.submit 'Create', class: 'btn btn-primary btn-lg' %>
+    </span>
+  </div>
+
+</div>
+</div>
+
+
+
+  </div>
+<% end %>

@@ -1,0 +1,20 @@
+<div class="nested-field">
+<div class="form-group">
+
+<%= f.label :degree %>
+<%= f.text_field :degree, class: 'form-control'%><br>
+
+<%= f.label "Grade" %>
+<%= f.text_field :value, placeholder: "(Out of 10)", class: 'form-control' %><br>
+
+<%= f.label :year %>
+<%= f.select :year, (Time.zone.now.year - 40)..(Time.zone.now.year + 1), {},placholder: "Year of joining",class: 'form-control' %><br>
+
+
+<div class="links">
+<%= link_to_remove_association "Remove Degree", f %>
+</div>
+
+
+</div>
+</div>
